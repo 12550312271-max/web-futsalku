@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FutsalKu | Booking Lapangan</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#"><span class="brand-icon">⚽</span><span>Futsal<span class="accent">Ku</span></span></a>
+    <nav>
+      <button class="nav-btn active" data-tab="bookingTab">Booking Lapangan</button>
+      <button class="nav-btn" data-tab="myTab">Booking Saya</button>
+      <button class="nav-btn" data-tab="staffTab">Portal Staff</button>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">MAIN BARENG, BOOKING GAMPANG</p>
+        <h1>Lapangan pilihanmu.<br><span class="accent">Waktumu sendiri.</span></h1>
+        <p>Pilih jadwal, isi data pemesan, dan simpan QR booking untuk ditunjukkan kepada staff.</p>
+        <button class="btn primary" id="goToSchedule">Lihat daftar booking ↓</button>
+      </div>
+      <aside class="hero-price">
+        <p class="eyebrow dark">INFORMASI HARGA DEMO</p>
+        <h2>Lapangan FutsalKu</h2>
+        <p>Indoor • Rumput sintetis • Lampu malam</p>
+        <div class="price">Rp150.000 <small>/ jam</small></div>
+        <p>DP 30% untuk mengamankan jadwal</p>
+      </aside>
+    </section>
+
+    <section class="tab-content active" id="bookingTab">
+      <div class="two-col">
+        <section class="panel" id="schedulePanel">
+          <div class="section-title">
+            <div><p class="eyebrow">JADWAL LAPANGAN</p><h2>Daftar Booking Lapangan untuk 14 Hari ke Depan</h2>
+              <p class="muted">Lihat slot tersedia dan slot yang sudah dipesan.</p></div>
+            <span class="badge green">14 hari</span>
+          </div>
+          <div class="date-nav">
+            <button class="btn secondary small" id="prevPeriod">← Sebelumnya</button>
+            <strong id="periodLabel"></strong>
+            <button class="btn secondary small" id="nextPeriod">Berikutnya →</button>
+          </div>
+          <div id="days" class="days"></div>
+          <div class="section-title slot-heading">
+            <div><h3 id="selectedDateLabel">Pilih tanggal</h3><p class="muted">Setiap slot berdurasi 1 jam.</p></div>
+          </div>
+          <div id="slots" class="slots"></div>
+          <p class="help">Slot yang sudah dipesan tidak dapat dipilih lagi. Data pada versi demo tersimpan di browser ini.</p>
+        </section>
+
+        <section class="panel">
+          <p class="eyebrow">DATA PEMESAN</p><h2>Lengkapi booking</h2>
+          <p class="muted">Masukkan data yang benar agar staff mudah memverifikasi pemesanan.</p>
+          <form id="bookingForm">
+            <label>Nama lengkap<input id="customerName" required placeholder="Nama sesuai identitas"></label>
+            <label>Nomor WhatsApp<input id="customerPhone" required inputmode="tel" placeholder="08xxxxxxxxxx"></label>
+            <label>Email (opsional)<input id="customerEmail" type="email" placeholder="nama@email.com"></label>
+            <label>Catatan (opsional)<input id="customerNote" placeholder="Contoh: nama tim"></label>
+            <div class="summary">
+              <div><span>Jadwal</span><b id="sumSchedule">Belum dipilih</b></div>
+              <div><span>Harga sewa</span><b id="sumPrice">Rp0</b></div>
+              <div><span>DP 30%</span><b id="sumDP">Rp0</b></div>
+              <div class="total"><span>Sisa dibayar di lokasi</span><b id="sumRemain">Rp0</b></div>
+            </div>
+            <label>Metode pembayaran DP
+              <select id="paymentMethod">
+                <option value="QRIS (simulasi)">QRIS (simulasi)</option>
+                <option value="Transfer bank (simulasi)">Transfer bank (simulasi)</option>
+                <option value="Tunai di lokasi">Tunai di lokasi</option>
+              </select>
+            </label>
+            <button class="btn primary full" id="submitBooking" type="submit" disabled>Buat booking & QR</button>
+            <p class="help">Pembayaran di website ini masih simulasi, belum memproses uang sungguhan.</p>
+          </form>
+        </section>
+      </div>
+    </section>
+
+    <section class="tab-content" id="myTab">
+      <section class="panel">
+        <div class="section-title"><div><p class="eyebrow">RIWAYAT PEMESANAN</p><h2>Booking Saya</h2><p class="muted">Daftar booking yang tersimpan di browser ini.</p></div><button class="btn secondary" id="refreshBookings">Perbarui</button></div>
+        <div id="myBookings"></div>
+      </section>
+    </section>
+
+    <section class="tab-content" id="staffTab">
+      <section class="panel">
+        <p class="eyebrow">KHUSUS PETUGAS</p><h2>Portal Staff — Verifikasi Booking</h2>
+        <p class="muted">Cari kode booking untuk melihat profil pelanggan, jadwal, DP, dan mencatat sisa pembayaran.</p>
+        <form id="staffSearch" class="search-row"><input id="staffCode" placeholder="Masukkan kode booking, contoh FK-A1B2C3"><button class="btn primary" type="submit">Cari booking</button></form>
+        <div id="staffResult"></div>
+        <p class="help">Demo ini belum memiliki login staff. Jangan gunakan sebagai sistem pembayaran produksi sebelum backend, database, dan autentikasi ditambahkan.</p>
+      </section>
+    </section>
+  </main>
+  <footer>© 2026 FutsalKu · Dimiliki oleh <strong>Davan Herlen Juliarta</strong></footer>
+  <div id="toast" class="toast" role="status"></div>
+  <script src="app.js"></script>
+</body>
+</html>
